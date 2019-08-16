@@ -2,13 +2,24 @@
     display: grid;
     background-color: #555;
     margin: 5%;
+    padding: 3%;
     width: 100vh;
     height: 80vh;
-    grid-template-rows: repeat(12, 1fr);
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(11, 1fr);
     grid-gap: 5px;
 }
 .block{
     background-color: #222;
     border: solid aqua 1px;
+}
+.day1, .day2, .day3, .day4, .day5, .day6, .day7, .day8, .day9, .day10, .hours{
+    display: grid;
+    grid-template-rows: repeat(13, 1fr);
+    grid-gap: 5px;
+}
+.hours p{
+    margin: auto;
+}
+.dayName{
+    margin:auto;
 }
