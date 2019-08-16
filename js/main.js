@@ -1,26 +1,29 @@
 console.log("main.js")
 function showHome(){
-    var x = document.getElementById("home");
-    if (x.style.display == "none") {
-        x.style.display = "flex";
-    } else {
-        x.style.display = "none";
-    }
+    var home = document.getElementById("home");
+    home.style.display = "flex";
+
+    var info = document.getElementById("info");
+    info.style.display = "none";
+    var abt = document.getElementById("abt");
+    abt.style.display = "none";
 }
 
 function showInfo() {
-    var x = document.getElementById("info");
-    if (x.style.display == "none") {
-        x.style.display = "flex";
-    } else {
-        x.style.display = "none";
-    }
+    var info = document.getElementById("info");
+    info.style.display = "flex";
+
+    var home = document.getElementById("home");
+    home.style.display = "none";
+    var abt = document.getElementById("abt");
+    abt.style.display = "none";
 }
 function showAbt() {
-    var x = document.getElementById("abt");
-    if (x.style.display == "none") {
-        x.style.display = "flex";
-    } else {
-        x.style.display = "none";
-    }
+    var abt = document.getElementById("abt");
+    abt.style.display = "flex";
+
+    var home = document.getElementById("home");
+    home.style.display = "none";
+    var info = document.getElementById("info");
+    info.style.display = "none";
 }
