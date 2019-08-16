@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.Body {
+    height: 100vh;
+    background-color: #08e8de;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.div1 {
+    width: 300px;
+    height: 300px;
+    background-color: #333;
+}
+.div2{
+    width: 300px;
+    height: 300px;
+    background-color: #777;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.div2 input{
+    padding: 5px;
+    margin: 10% 0% 0% 0%;
+}
+.div2 p{
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+#submit {
+    padding: 3px;
+}

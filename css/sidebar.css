@@ -1,0 +1,42 @@
+* {
+    padding: 0pc;
+    margin: 0px;
+}
+body{
+    display: flex;
+    background-color: #222;    
+    flex-direction: row;
+}
+.sidebar {
+    width: 20%;
+    height: 100vh;
+    background-color: black;
+    order: 1;
+}
+.sidebar ul{
+    color:white;
+    list-style: none;
+}
+.sidebar li{
+    padding: 10px 10px 15px 20px;
+    font-size: 30px;
+}
+.sidebar a{
+    text-decoration: none;
+    color: white;
+}
+.sidebar a:hover{
+    color: #999
+    
+}
+.main {
+    background-color: cadetblue;
+    order: 2;
+}
+.main2:hover {
+    background-color: antiquewhite;
+}
+
+.main2{
+    order: 3;
+}

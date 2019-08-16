@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Flex Test</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../css/flex_text.css'>
+</head>
+
+<body>
+    <div class="Body">
+        <div class="div1">
+            <img src="https://www.thisiscolossal.com/wp-content/uploads/2018/12/agifcolossal3opt1.gif" width="300"
+                height="300">
+        </div>
+        <div class="div2">
+            <p>Login Sheet :D</p>
+            <input type="text" placeholder="Enter Name" id="name">
+            <input type="password" placeholder="Enter Password" id="pass"><br>
+            <button onclick="testFn()" id="submit">Submit</button>
+        </div>
+    </div>
+</body>
+<script>
+    console.log('test');
+    function testFn() {
+        var name = document.getElementById("name");
+        var pass = document.getElementById("pass");
+        if (name.value.toString() == "test" && pass.value.toString() == "pass") {
+            location.replace("sidebar.html");
+        }
+    }
+</script>
+
+</html>
