@@ -11,7 +11,7 @@ body{
     width: 20%;
     height: 100vh;
     background-color: black;
-    order: 1;
+    order: -1;
 }
 .sidebar ul{
     color:white;
@@ -29,14 +29,8 @@ body{
     color: #999
     
 }
-.main {
-    background-color: cadetblue;
-    order: 2;
-}
-.main2:hover {
-    background-color: antiquewhite;
-}
 
-.main2{
-    order: 3;
+p{
+    color: white;
+    font-size: 50px;
 }
