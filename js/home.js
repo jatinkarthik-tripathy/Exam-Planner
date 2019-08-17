@@ -30,17 +30,21 @@ function showAbt() {
 
 var block = document.getElementsByClassName("block");
 for (var i = 0; i < block.length; i++) {
+    block[i].style.backgroundColor = '#222';
     block[i].addEventListener("click", bindClick(i));
 }
 
 function bindClick(i) {
     return function () {
+        console.log("block[i].style.backgroundColor: " + block[i].style.backgroundColor.toString());
         var hexString = document.createElement('div')
         hexString.style.backgroundColor = `#222`
-        if (block[i].style.backgroundColor === hexString.style.backgroundColor) {
+        if (block[i].style.backgroundColor == hexString.style.backgroundColor) {
             block[i].style.backgroundColor = 'aqua';
+            console.log("in aqua")
         } else {
             block[i].style.backgroundColor = '#222';
+            console.log('in black');
         }
     };
 }
