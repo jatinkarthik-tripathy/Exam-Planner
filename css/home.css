@@ -1,15 +1,25 @@
 #home{
+    display: flex;   
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    height: 100%;
+}
+
+.tbl{
     display: grid;
-    background-color: #555;
+    background-color: #444;
+    border: 3px solid aqua;
+    border-radius: 10px;
     margin: 2%;
     padding: 3%;
-    width: 100vh;
-    height: 80vh;
+    width: 50%;
+    height: 80%;
     grid-template-columns: repeat(11, 1fr);
     grid-gap: 5px;
+    column-gap: 5px;
 }
 .block{
-    /* background-color: #222; */
     border: solid aqua 1px;
 }
 .day1, .day2, .day3, .day4, .day5, .day6, .day7, .day8, .day9, .day10, .hours{
@@ -19,7 +29,70 @@
 }
 .hours p{
     margin: auto;
+    color: white;
+    font-family: monospace;
 }
 .dayName{
     margin:auto;
+    font-family: monospace;
+    color: white;
+}
+
+.add_entry{
+    margin: 2%;
+    padding: 3%;
+    width: 25%;
+    height: 50%;
+    background-color: #444;
+    border: 3px solid aqua;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    align-items: center;
+    font-family: monospace;
+    font-size: 20px;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+}
+.item:nth-child(1), 
+.item:nth-child(8), 
+.item:nth-child(9), 
+.item:nth-child(10){
+    grid-column: span 2;
+}
+
+#add_button{
+    background-color: rgba(0, 0, 0, 0);
+    color: aqua;
+    border: 2px solid aqua;
+    border-radius: 15px;
+    width: 150px;
+    height: 30px;
+    font-size: 20px;
+    font-family: monospace
+}
+
+#sub_name,
+#day_selection, 
+#time_selection{
+    background-color: #444;
+    color: white;
+    font-family: monospace;
+    font-size: 20px;
+    border: 3px solid turquoise;
+    border-radius: 5px;
+    padding: 0 5px 0 5px;
+    text-align: center;
+}
+
+#notes{
+    background-color: #444;
+    color: white;
+    font-family: monospace;
+    font-size: 15px;
+    border: 3px solid turquoise;
+    border-radius: 15px;
+    padding:5px;
 }

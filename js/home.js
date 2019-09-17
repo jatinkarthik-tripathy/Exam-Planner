@@ -40,7 +40,7 @@ function bindClick(i) {
         var hexString = document.createElement('div')
         hexString.style.backgroundColor = `#222`
         if (block[i].style.backgroundColor == hexString.style.backgroundColor) {
-            block[i].style.backgroundColor = 'aqua';
+            block[i].style.backgroundColor = 'turquoise';
             console.log("in aqua")
         } else {
             block[i].style.backgroundColor = '#222';
@@ -48,3 +48,10 @@ function bindClick(i) {
         }
     };
 }
+
+var add_btn = document.getElementById("add_button");
+add_btn.addEventListener("click", function(){
+    myObj = { name: "John", age: 31, city: "New York" };
+    myJSON = JSON.stringify(myObj);
+    localStorage.setItem("testJSON", myJSON);
+})

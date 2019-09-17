@@ -6,9 +6,10 @@ body{
     display: flex;
     background-color: #222;    
     flex-direction: row;
+    height: 100vh;
 }
 .sidebar {
-    width: 150px;
+    width: 10%;
     height: 100vh;
     background-color: black;
     order: -1;
@@ -18,7 +19,7 @@ body{
     list-style: none;
 }
 .sidebar li{
-    padding: 10px 10px 15px 20px;
+    padding: 50px 10px 15px 20px;
     font-size: 20px;
 }
 .sidebar a{
