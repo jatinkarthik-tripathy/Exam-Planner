@@ -13,15 +13,17 @@
     <div class="Body">
         <div class="main">
             <div class="div1">
-                <img src="https://image.shutterstock.com/image-vector/ep-logo-initial-letter-design-260nw-732369733.jpg" width="300"
-                    height="300">
+                <img src="../assets/images/ep_logo.jpg" width="300" height="300">
             </div>
-            <div class="div2">
-                <p>Login</p>
-                <input type="text" placeholder="Enter Name" id="name">
-                <input type="password" placeholder="Enter Password" id="pass"><br>
-                <button onclick="testFn()" id="submit">Submit</button>
-            </div>
+            <form action="../php/login.php" method="POST">
+                <div class="div2">
+                    <p>Login</p>
+                    <input type="text" placeholder="Enter Name" id="name" name="usrnm">
+                    <input type="password" placeholder="Enter Password" id="pass" name="pwd"><br>
+                    <!-- <button o  nclick="testFn()" id="submit">Submit</button> -->
+                    <input type="submit" id="submit" name="sub">
+                </div>
+            </form>
         </div>
     </div>
 </body>
