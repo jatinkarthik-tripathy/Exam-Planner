@@ -29,6 +29,9 @@
 .block{
     border: solid #007F80 1px;
 }
+.block:hover{
+    border: 2px solid turquoise;
+}
 .tbl p{
     margin: auto;
     color: white;
@@ -36,7 +39,7 @@
 }
 .add_entry{
     margin: 2%;
-    padding: 3%;
+    padding: 2%;
     width: 25%;
     height: 50%;
     background-color: #333;
@@ -65,7 +68,7 @@
     color: white;
     border: 2px solid #007F80;
     border-radius: 15px;
-    width: 150px;
+    width: 90%;
     height: 30px;
     font-size: 20px;
     font-family: monospace
@@ -89,7 +92,6 @@
     font-size: 20px;
     border: 3px solid #007F80;
     border-radius: 5px;
-    padding: 0 5px 0 5px;
     text-align: center;
 }
 #sub_name{
@@ -102,6 +104,5 @@
     font-size: 15px;
     border: 3px solid #007F80;
     border-radius: 15px;
-    padding:8px;
     width: 100%;
 }

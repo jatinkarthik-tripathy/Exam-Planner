@@ -2,8 +2,8 @@ flag = false;
 var index;
 var block = document.getElementsByClassName("block");
 times = {
-    0:"12 am", 1:"2 am", 2:"4 am", 3:"6 am", 4:"8 am", 5:"10 am",
-    6:"12 pm", 7:"2 pm", 8:"4 pm", 9:"6 pm", 10:"8 pm", 11:"10 pm"    
+    0: "12 am", 1: "2 am", 2: "4 am", 3: "6 am", 4: "8 am", 5: "10 am",
+    6: "12 pm", 7: "2 pm", 8: "4 pm", 9: "6 pm", 10: "8 pm", 11: "10 pm"
 }
 text = localStorage.getItem("testJSON");
 obj = JSON.parse(text);
@@ -11,10 +11,9 @@ obj = JSON.parse(text);
 function showHome() {
     var home = document.getElementById("home");
     home.style.display = "flex";
-    
+
     var info = document.getElementById("info");
     info.style.display = "none";
-    
 }
 function showInfo() {
     var info = document.getElementById("info");
@@ -22,6 +21,31 @@ function showInfo() {
 
     var home = document.getElementById("home");
     home.style.display = "none";
+    var httpRequest = new XMLHttpRequest;
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState === 4) { 
+            if (httpRequest.status === 200) {
+                rsp = httpRequest.responseText;
+                objs = JSON.parse(rsp);
+                console.log(objs);
+                
+                for (var obj in objs) {
+                    var new_div = document.createElement('div');
+                    new_div.setAttribute('id', "det");
+                    for (var i in objs[obj]){
+                        var newElement = document.createElement('p');
+                        newElement.innerHTML = objs[obj][i];
+                        new_div.appendChild(newElement);
+                    }
+                    info.appendChild(new_div);
+                    console.log(obj)
+                }
+            }
+        }
+    };
+    httpRequest.open('GET', "../php/details.php");
+    httpRequest.send();
+    
 }
 
 for (var i = 0; i < block.length; i++) {
@@ -31,19 +55,20 @@ for (var i = 0; i < block.length; i++) {
 
 function bindClick(i) {
     return function () {
-        if(flag == false){
+        if (flag == false) {
             var hexString = document.createElement('div')
             hexString.style.backgroundColor = `#222`
             if (block[i].style.backgroundColor == hexString.style.backgroundColor) {
                 block[i].style.backgroundColor = 'turquoise';
                 var entry = document.getElementById("add_entry");
                 entry.style.display = "grid";
-                flag=true;
+                flag = true;
                 index = $(this).index();
-                if(index>=14 && index<=25){
+                console.log(index);
+                if (index >= 14 && index <= 25) {
                     document.getElementById("day_p").innerHTML = "Day 1";
                     document.getElementById("time_p").innerHTML = times[(index - 14)];
-                    idx = index-14;
+                    idx = index - 14;
                 } else if (index >= 27 && index <= 38) {
                     document.getElementById("day_p").innerHTML = "Day 2";
                     document.getElementById("time_p").innerHTML = times[(index - 27)];
@@ -78,7 +103,7 @@ function bindClick(i) {
                     idx = index - 22;
                 } else if (index >= 131 && index <= 142) {
                     document.getElementById("day_p").innerHTML = "Day 10";
-                    docment.getElementById("time_p").innerHTML = times[(index - 131)];
+                    document.getElementById("time_p").innerHTML = times[(index - 131)];
                     idx = index - 23;
                 }
             } else {
@@ -89,33 +114,42 @@ function bindClick(i) {
 }
 
 var add_btn = document.getElementById("add_button");
-add_btn.addEventListener("click", function(){
-    var httpc = new XMLHttpRequest(); // simplified for clarity
-    var url = "add_data.php";
-    httpc.open("POST", url, true); // sending as POST
-
-    myObj = { 
+add_btn.addEventListener("click", function () {
+    myObj = {
         idx: idx,
-        subject: document.getElementById("sub_name").value, 
+        subject: document.getElementById("sub_name").value,
         day: document.getElementById("day_p").innerHTML,
         time: document.getElementById("time_p").innerHTML,
         notes: document.getElementById("notes").value
     }
-    params = JSON.stringify(myObj);
-
-    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    httpc.setRequestHeader("Content-Length", params.length); // POST request MUST have a Content-Length header (as per HTTP/1.1)
-
-    httpc.onreadystatechange = function () { //Call a function when the state changes.
-        if (httpc.readyState == 4 && httpc.status == 200) { // complete and no errors
-            alert(httpc.responseText); // some processing here, or whatever you want to do with the response
-        }
-    };
-    httpc.send(params);
+    url = "../php/add_data.php" + "?idx=" + myObj['idx'] + "&sub=" + myObj['subject'] + "&day=" + myObj['day'] + "&time=" + myObj['time'] + "&notes=" + myObj['notes'];
+    window.location.href = url;
 })
 
 var cancel_btn = document.getElementById("cancel_button");
-cancel_btn.addEventListener("click", function(){
+cancel_btn.addEventListener("click", function () {
     flag = false;
     location.reload();
-})
+});
+
+init_table();
+
+function init_table(){    
+    var httpRequest = new XMLHttpRequest;
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState === 4) { // Request is done
+            if (httpRequest.status === 200) { // successfully
+                rsp = httpRequest.responseText; // We're calling our method
+                obj = JSON.parse(rsp);
+                console.log(obj)
+                for (var i in obj) {
+                    block[parseInt(obj[i])].style.backgroundColor = 'turquoise';
+                }
+
+                
+            }   
+        }
+    };
+    httpRequest.open('GET', "../php/init.php");
+    httpRequest.send();
+}

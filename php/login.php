@@ -3,7 +3,7 @@ $con=mysqli_connect("localhost","root","","exam_planner");
 if (isset($_POST["sub"])){
     $nm = $_POST["usrnm"];
     $query = "select password from login_details where username=?";
-    $stmt = mysqli_prepare($con, $query);
+    $stmt = mysqli_prepare($con, $query) or die(mysqli_error($conn));
     mysqli_stmt_bind_param($stmt, 's', $nm);
     mysqli_stmt_execute($stmt);
     // $result = mysqli_query($con, $sql);
