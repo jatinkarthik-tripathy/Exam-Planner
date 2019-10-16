@@ -1,18 +1,35 @@
-flag = false;
+var usr = null;
+var httpRequest = new XMLHttpRequest;
+httpRequest.onreadystatechange = function () {
+    if (httpRequest.readyState === 4) { // Request is done
+        if (httpRequest.status === 200) { // successfully
+            usr = httpRequest.responseText;  
+            init_table();
+        }
+    }
+};
+httpRequest.open('GET', "../php/get_user.php");
+httpRequest.send();
+
 var index;
 var block = document.getElementsByClassName("block");
 times = {
     0: "12 am", 1: "2 am", 2: "4 am", 3: "6 am", 4: "8 am", 5: "10 am",
     6: "12 pm", 7: "2 pm", 8: "4 pm", 9: "6 pm", 10: "8 pm", 11: "10 pm"
 }
-text = localStorage.getItem("testJSON");
-obj = JSON.parse(text);
+
 function showHome() {
     var home = document.getElementById("home");
     home.style.display = "flex";
 
     var info = document.getElementById("info");
     info.style.display = "none";
+
+    var child = info.lastElementChild;
+    while (child) {
+        info.removeChild(child);
+        child = info.lastElementChild;
+    }
 }
 function showInfo() {
     var info = document.getElementById("info");
@@ -46,9 +63,8 @@ function showInfo() {
             }
         }
     };
-    httpRequest.open('GET', "../php/details.php");
+    httpRequest.open('GET', "../php/details.php?usr="+usr);
     httpRequest.send();
-
 }
 
 for (var i = 0; i < block.length; i++) {
@@ -188,9 +204,10 @@ add_btn.addEventListener("click", function () {
         subject: document.getElementById("sub_name").value,
         day: document.getElementById("day_p").innerHTML,
         time: document.getElementById("time_p").innerHTML,
-        notes: document.getElementById("notes").value
+        notes: document.getElementById("notes").value,
+        usr: usr
     }
-    url = "../php/add_data.php" + "?idx=" + myObj['idx'] + "&sub=" + myObj['subject'] + "&day=" + myObj['day'] + "&time=" + myObj['time'] + "&notes=" + myObj['notes'];
+    url = "../php/add_data.php" + "?idx=" + myObj['idx'] + "&sub=" + myObj['subject'] + "&day=" + myObj['day'] + "&time=" + myObj['time'] + "&notes=" + myObj['notes'] + "&usr=" + myObj['usr'];
     var httpRequest = new XMLHttpRequest;
     httpRequest.onreadystatechange = function () {
         if (httpRequest.readyState === 4) { // Request is done
@@ -209,7 +226,6 @@ cancel_btn.addEventListener("click", function () {
     location.reload();
 });
 
-init_table();
 
 function init_table() {
     var httpRequest = new XMLHttpRequest;
@@ -226,7 +242,7 @@ function init_table() {
             }
         }
     };
-    httpRequest.open('GET', "../php/init.php");
+    httpRequest.open('GET', "../php/init.php?usr="+usr);
     httpRequest.send();
 }
 

@@ -11,9 +11,12 @@ if (isset($_POST["sub"])){
     if(mysqli_num_rows($result)>0){
         while($row = mysqli_fetch_assoc($result)){
             if($_POST["pwd"]==$row["password"]){
+                session_start();
+                $_SESSION["name"] = $nm;
                 ob_start();
                 echo $_POST["pwd"];
                 header("Location:http://localhost/exam%20planner/html/sidebar.html");
+                echo $nm;
                 ob_end_flush();
                 die();
             }

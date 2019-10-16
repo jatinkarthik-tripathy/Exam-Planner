@@ -64,5 +64,7 @@
 .div2 p{
     font-size: 35px;
     font-family: monospace;
-    color:#007F80;
+    color:white;
+    padding:5px;
+    border-bottom: 2px solid turquoise ;
 }
