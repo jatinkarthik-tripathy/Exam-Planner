@@ -1,10 +1,9 @@
-console.log('test');
 let but = document.querySelector("#pass");
 but.addEventListener("keypress", testFn);
 function testFn() {
     var name = document.getElementById("name");
     var pass = document.getElementById("pass");
-    if (name.value.toString() == "test" && pass.value.toString() == "pass") {
+    if (name.value === "test" && pass.value === "pass") {
         location.replace("sidebar.html");
     }
 }

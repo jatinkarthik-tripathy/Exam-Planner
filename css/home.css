@@ -4,6 +4,7 @@
     padding: 0px
 }
 #home{
+      margin-left: 10rem;
     display: flex;   
     flex-direction: row;
     align-items: center;
@@ -111,7 +112,8 @@
     font-size: 15px;
     border: 3px solid #007F80;
     border-radius: 15px;
-    width: 100%;
+    width: 80%;
+    padding: 5%;
 }
 
 #empty_p{
