@@ -1,6 +1,6 @@
 <?php
 $con=mysqli_connect("localhost","root","","exam_planner");
-$query = "select * from entries order by idx";
+$query = "select * from entries order by 'idx'";
 $res = mysqli_query($con, $query);
 $arr = array();
 if (mysqli_num_rows($res)) {

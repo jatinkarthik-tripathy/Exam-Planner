@@ -37,7 +37,7 @@
     color: white;
     font-family: monospace;
 }
-.add_entry{
+.entry{
     margin: 2%;
     padding: 2%;
     width: 25%;
@@ -63,7 +63,9 @@
 }
 
 #add_button,
-#cancel_button{
+#cancel_button,
+#mod_button,
+#del_button{
     background-color: rgba(0, 0, 0, 0);
     color: white;
     border: 2px solid #007F80;
@@ -74,7 +76,9 @@
     font-family: monospace
 }
 #add_button:hover,
-#cancel_button:hover{
+#cancel_button:hover,
+#mod_button:hover,
+#del_button:hover{
     border: 2px solid turquoise;
 }
 #add_button:active,
@@ -84,6 +88,7 @@
 
 
 #sub_name,
+#mod_sub_name,
 #day_selection, 
 #time_selection{
     background-color: #333;
@@ -94,10 +99,12 @@
     border-radius: 5px;
     text-align: center;
 }
+#mod_sub_name,
 #sub_name{
     width: 100%;
 }
-#notes{
+#notes,
+#mod_notes{
     background-color: #333;
     color: white;
     font-family: monospace;
@@ -105,4 +112,11 @@
     border: 3px solid #007F80;
     border-radius: 15px;
     width: 100%;
+}
+
+#empty_p{
+    margin:5%;
+    color: white;
+    font-family: monospace;
+    font-size: 25px;
 }

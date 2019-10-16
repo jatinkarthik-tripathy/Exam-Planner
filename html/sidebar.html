@@ -163,7 +163,7 @@
             <div class="block"></div>
             <div class="block"></div>
         </div>
-        <div class="add_entry" id="add_entry" style="display: none">
+        <div class="entry" id="add_entry" style="display: none">
             <div class="item">
                 <p style="font-size: 30px;">Add Entry</p>
             </div>
@@ -183,13 +183,42 @@
                 <p>Extra Notes</p>
             </div>
             <div class="item">
-                <textarea name="notes" id="notes" cols="40" rows="10">  </textarea>
+                <textarea name="notes" id="notes" cols="40" rows="10"></textarea>
             </div>
             <div class="item">
                 <button id="add_button">Add</button>
             </div>
             <div class="item">
                 <button id="cancel_button">Cancel</button>
+            </div>
+        </div>
+        <div class="entry" id="modify_entry" style="display: none">
+            <div class="item">
+                <p style="font-size: 30px;">Modify Entry</p>
+            </div>
+            <div class="item">
+                <p>Subject: </p>
+            </div>
+            <div class="item">
+                <input type="text" placeholder="Subject" id="mod_sub_name">
+            </div>
+            <div class="item">
+                <p id="mod_day_p"></p>
+            </div>
+            <div class="item">
+                <p id="mod_time_p"></p>
+            </div>
+            <div class="item">
+                <p>Extra Notes</p>
+            </div>
+            <div class="item">
+                <textarea name="notes" id="mod_notes" cols="40" rows="10"></textarea>
+            </div>
+            <div class="item">
+                <button id="mod_button">Save</button>
+            </div>
+            <div class="item">
+                <button id="del_button">Delete</button>
             </div>
         </div>
     </div>
