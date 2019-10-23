@@ -1,9 +1,16 @@
-let but = document.querySelector("#pass");
-but.addEventListener("keypress", testFn);
-function testFn() {
-    var name = document.getElementById("name");
-    var pass = document.getElementById("pass");
-    if (name.value === "test" && pass.value === "pass") {
-        location.replace("sidebar.html");
-    }
+function showLogin() {
+    var login = document.getElementsByClassName("login");
+    // console.log(login);
+    login[0].style.display = "flex";
+    
+    var signup = document.getElementsByClassName("signup");
+    signup[0].style.display = "none";
+}
+
+function showSignup() {
+    var login = document.getElementsByClassName("login");
+    login[0].style.display = "none";
+
+    var signup = document.getElementsByClassName("signup");
+    signup[0].style.display = "flex";
 }

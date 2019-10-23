@@ -14,13 +14,13 @@ if (isset($_POST["sub"])){
                 session_start();
                 $_SESSION["name"] = $nm;
                 ob_start();
-                echo $_POST["pwd"];
                 header("Location:http://localhost/exam%20planner/html/sidebar.html");
-                echo $nm;
                 ob_end_flush();
                 die();
             }
         }
+    } else {
+        header("Location:http://localhost/exam%20planner/html/flex_test.html");
     }
 }
 ?>

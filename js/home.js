@@ -16,8 +16,11 @@ var block = document.getElementsByClassName("block");
 times = {
     0: "12 am", 1: "2 am", 2: "4 am", 3: "6 am", 4: "8 am", 5: "10 am",
     6: "12 pm", 7: "2 pm", 8: "4 pm", 9: "6 pm", 10: "8 pm", 11: "10 pm"
-}
-
+};
+function logout(){
+    console.log("logging out");
+    window.location.replace("../php/logout.php");
+};
 function showHome() {
     var home = document.getElementById("home");
     home.style.display = "flex";
@@ -30,7 +33,7 @@ function showHome() {
         info.removeChild(child);
         child = info.lastElementChild;
     }
-}
+};
 function showInfo() {
     var info = document.getElementById("info");
     info.style.display = "flex";
@@ -177,14 +180,12 @@ function bindClick(i) {
             console.log(url);
             var httpRequest = new XMLHttpRequest;
             httpRequest.onreadystatechange = function () {
-                if (httpRequest.readyState === 4) { // Request is done
-                    if (httpRequest.status === 200) { // successfully
+                if (httpRequest.readyState === 4) { 
+                    if (httpRequest.status === 200) { 
                         rsp = httpRequest.responseText;
                         mod_obj = JSON.parse(rsp);
                         console.log(mod_obj);
                         document.getElementById("mod_sub_name").value = mod_obj[1];
-                        // document.getElementById("mod_day_p").innerHTML = mod_obj[2];
-                        // document.getElementById("mod_time_p").innerHTML = mod_obj[3];
                         document.getElementById("mod_notes").value = mod_obj[4];
                     }
                 }

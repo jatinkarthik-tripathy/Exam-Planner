@@ -15,16 +15,35 @@
             <div class="div1">
                 <img src="../assets/images/ep_logo.jpg" width="300" height="300">
             </div>
-            <form action="../php/login.php" method="POST">
-                <div class="div2">
-                    <p>Login</p>
-                    <input type="text" placeholder="Enter Name" id="name" name="usrnm">
-                    <input type="password" placeholder="Enter Password" id="pass" name="pwd"><br>
+            <div class="nav">
+                <ul>
+                    <li id="navLogin"><a onclick="showLogin()">Login</a></li>
+                    <li id="navSingup"><a onclick="showSignup()">Sign Up</a></li>
+                </ul>
+            </div>
+            <br>
+            <div class="login" >
+                <form action="../php/login.php" method="POST">
+                    <input type="text" placeholder="Enter Name" id="name" name="usrnm"> 
+                    <br>
+                    <input type="password" placeholder="Enter Password" id="pass" name="pwd">
+                    <br>
                     <input type="submit" id="submit" name="sub">
-                </div>
-            </form>
+                </form>
+            </div>
+            <div class="signup" style="display:none;">
+                <form action="../php/signup.php" method="POST">
+                    <input type="text" placeholder="Name" id="nameS" name="usrnmS">
+                    <br>
+                    <input type="password" placeholder="Password" id="passS" name="pwdS">
+                    <br>
+                    <button type="submit" id="submitS" name="subS">Sign Up</button>
+                </form>
+            </div>
+            
         </div>
     </div>
 </body>
 <script type="text/javascript" src="../js/login.js"></script>
+
 </html>

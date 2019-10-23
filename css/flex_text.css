@@ -11,28 +11,55 @@
     align-items: center;
     justify-content: center;
 }
-
 .main{
     padding: 50px;
-    /* border:6px solid black; */
     border-radius: 25px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
 .div1 {
     width: 300px;
     height: 300px;
     background-color: #333;
 }
-.div2{
+.nav{
+    width: 100%;
+}
+
+.nav ul{
+    list-style: none;
+    padding-top: 3%;
+    
+}
+.nav li{
+    padding: 0 0 0 20%;
+    font-size: 20px;
+    font-family: monospace;
+    display: inline !important;
+}
+.nav a{
+    text-decoration: none;
+    color: white;
+}
+.nav a:hover{
+    padding-bottom: 2px;
+    border-bottom: 2px solid turquoise ;
+}
+
+.login{
     width: 300px;
-    height: 300px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center !important;
 }
-#submit{
+
+.login #submit{
     background-color: rgba(0, 0, 0, 0);
+    margin: 15%;
     color: white;
     border: 2px solid #007F80;
     border-radius: 15px;
@@ -43,9 +70,9 @@
 }
 
 
-.div2 #name,
-.div2 #pass{
-    padding: 5px;
+.login #name,
+.login #pass{
+    padding: 3px;
     margin: 10% 0% 0% 0%;
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -56,15 +83,50 @@
     font-family: monospace;
     
 }
-.div2 input::placeholder{
+.login input::placeholder{
     font-family: monospace;
     color: white;
     text-align: center;
 }
-.div2 p{
-    font-size: 35px;
+
+
+.signup{
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center !important; 
+}
+
+.signup #submitS{
+    background-color: rgba(0, 0, 0, 0);
+    margin: 15%;
+    color: white;
+    border: 2px solid #007F80;
+    border-radius: 15px;
+    width: 150px;
+    height: 35px;
+    font-size: 20px;
+    font-family: monospace
+}
+
+
+.signup #nameS,
+.signup #passS{
+    padding: 3px;
+    margin: 10% 0% 0% 0%;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    border-bottom: 2px solid #007F80;
+    color: white;
+    width: 200px;
+    height: 30px;
     font-family: monospace;
-    color:white;
-    padding:5px;
-    border-bottom: 2px solid turquoise ;
+    
+}
+.signup input::placeholder{
+    font-family: monospace;
+    color: white;
+    text-align: center;
 }
