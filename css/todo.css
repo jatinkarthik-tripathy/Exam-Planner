@@ -1,0 +1,18 @@
+#todo{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#det{
+    margin:3% 10% 0 0;
+    padding-bottom: 1%;
+    border-bottom: 5px solid teal;
+}
+#det p{
+    margin: auto;
+    color: white;
+    font-size: 15px;
+    font-family: monospace;
+    padding: 5px;
+}

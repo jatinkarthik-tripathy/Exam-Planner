@@ -3,7 +3,7 @@ var httpRequest = new XMLHttpRequest;
 httpRequest.onreadystatechange = function () {
     if (httpRequest.readyState === 4) { // Request is done
         if (httpRequest.status === 200) { // successfully
-            usr = httpRequest.responseText;  
+            usr = httpRequest.responseText;
             init_table();
         }
     }
@@ -17,40 +17,46 @@ times = {
     0: "12 am", 1: "2 am", 2: "4 am", 3: "6 am", 4: "8 am", 5: "10 am",
     6: "12 pm", 7: "2 pm", 8: "4 pm", 9: "6 pm", 10: "8 pm", 11: "10 pm"
 };
-function logout(){
-    console.log("logging out");
+function logout() {
     window.location.replace("../php/logout.php");
 };
 function showHome() {
     var home = document.getElementById("home");
     home.style.display = "flex";
 
-    var info = document.getElementById("info");
-    info.style.display = "none";
+    var todo = document.getElementById("todo");
+    todo.style.display = "none";
 
-    var child = info.lastElementChild;
-    while (child) {
-        info.removeChild(child);
-        child = info.lastElementChild;
-    }
+    var details = document.getElementById("details");
+    details.style.display = "none";
+    init_table()
 };
-function showInfo() {
-    var info = document.getElementById("info");
-    info.style.display = "flex";
+function showToDo() {
+    var todo = document.getElementById("todo");
+    todo.style.display = "flex";
 
     var home = document.getElementById("home");
     home.style.display = "none";
+
+    var details = document.getElementById("details");
+    details.style.display = "none";
+
+    var child = todo.lastElementChild;
+    while (child) {
+        todo.removeChild(child);
+        child = todo.lastElementChild;
+    }
     var httpRequest = new XMLHttpRequest;
     httpRequest.onreadystatechange = function () {
         if (httpRequest.readyState === 4) {
             if (httpRequest.status === 200) {
                 rsp = httpRequest.responseText;
                 objs = JSON.parse(rsp);
-                if (objs == ""){
+                if (objs == "") {
                     var empty_p = document.createElement('p');
                     empty_p.setAttribute('id', "empty_p");
                     empty_p.innerHTML = "You have no tasks planned";
-                    info.appendChild(empty_p);
+                    todo.appendChild(empty_p);
                 } else {
                     for (var obj in objs) {
                         var new_div = document.createElement('div');
@@ -60,16 +66,26 @@ function showInfo() {
                             newElement.innerHTML = objs[obj][i];
                             new_div.appendChild(newElement);
                         }
-                        info.appendChild(new_div);
+                        todo.appendChild(new_div);
                     }
                 }
             }
         }
     };
-    httpRequest.open('GET', "../php/details.php?usr="+usr);
+    httpRequest.open('GET', "../php/details.php?usr=" + usr);
     httpRequest.send();
 }
+function showDetails() {
+    var details = document.getElementById("details");
+    details.style.display = "flex";
 
+    var home = document.getElementById("home");
+    home.style.display = "none";
+
+    var todo = document.getElementById("todo");
+    todo.style.display = "none";
+    update_exam_list();
+}
 for (var i = 0; i < block.length; i++) {
     block[i].style.backgroundColor = '#222';
     block[i].addEventListener("click", bindClick(i));
@@ -78,16 +94,17 @@ mod_obj = null;
 function bindClick(i) {
     return function () {
         // if (flag == false) {
-        var hexString = document.createElement('div')
-        hexString.style.backgroundColor = `#222`
-        if (block[i].style.backgroundColor == hexString.style.backgroundColor) {
+        var hexString1 = document.createElement('div')
+        hexString1.style.backgroundColor = `#222`
+        var hexString2 = document.createElement('div')
+        hexString2.style.backgroundColor = `turquoise`
+        if (block[i].style.backgroundColor == hexString1.style.backgroundColor) {
             block[i].style.backgroundColor = 'turquoise';
             var entry = document.getElementById("add_entry");
             entry.style.display = "grid";
             flag = true;
             index = $(this).index();
             if (index >= 14 && index <= 25) {
-                console.log(index);
                 document.getElementById("day_p").innerHTML = "Day 1";
                 document.getElementById("time_p").innerHTML = times[(index - 14)];
                 idx = index - 14;
@@ -128,8 +145,7 @@ function bindClick(i) {
                 document.getElementById("time_p").innerHTML = times[(index - 131)];
                 idx = index - 23;
             }
-        } else {
-            // block[i].style.backgroundColor = '#222';
+        } else if (block[i].style.backgroundColor == hexString2.style.backgroundColor){
             var entry = document.getElementById("modify_entry");
             entry.style.display = "grid";
 
@@ -177,14 +193,12 @@ function bindClick(i) {
             }
             idx = ("000" + idx).slice(-3)
             url = "../php/get_data.php" + "?idx=" + idx;
-            console.log(url);
             var httpRequest = new XMLHttpRequest;
             httpRequest.onreadystatechange = function () {
-                if (httpRequest.readyState === 4) { 
-                    if (httpRequest.status === 200) { 
+                if (httpRequest.readyState === 4) {
+                    if (httpRequest.status === 200) {
                         rsp = httpRequest.responseText;
                         mod_obj = JSON.parse(rsp);
-                        console.log(mod_obj);
                         document.getElementById("mod_sub_name").value = mod_obj[1];
                         document.getElementById("mod_notes").value = mod_obj[4];
                     }
@@ -193,7 +207,6 @@ function bindClick(i) {
             httpRequest.open('GET', url);
             httpRequest.send();
         }
-        // }
     };
 }
 
@@ -235,15 +248,20 @@ function init_table() {
             if (httpRequest.status === 200) { // successfully
                 rsp = httpRequest.responseText; // We're calling our method
                 obj = JSON.parse(rsp);
-                for (var i in obj) {
-                    block[parseInt(obj[i])].style.backgroundColor = 'turquoise';
+                for (var i in obj[0]) {
+                    block[parseInt(obj[0][i])].style.backgroundColor = 'turquoise';
                 }
-
-
+                for (var i in obj[1]) {
+                    block[parseInt(obj[1][i])].style.backgroundColor = 'red';
+                    block[parseInt(obj[1][i])].removeEventListener("click", bindClick(parseInt(obj[1][i])));
+                    block[parseInt(obj[1][i])].addEventListener("click", function(){
+                        alert("This is an Exam!!");
+                    });
+                }
             }
         }
     };
-    httpRequest.open('GET', "../php/init.php?usr="+usr);
+    httpRequest.open('GET', "../php/init.php?usr=" + usr);
     httpRequest.send();
 }
 
@@ -257,7 +275,6 @@ del_btn.addEventListener("click", function () {
             }
         }
     };
-    console.log(mod_obj);
     url = "../php/del_data.php?idx=" + mod_obj[0];
     httpRequest.open('GET', url);
     httpRequest.send();
@@ -277,16 +294,120 @@ mod_btn.addEventListener("click", function () {
 
     var httpRequest = new XMLHttpRequest;
     httpRequest.onreadystatechange = function () {
-        if (httpRequest.readyState === 4) { // Request is done
+        if (httpRequest.readyState === 4) {
             if (httpRequest.status === 200) {
             }
         }
     };
-    console.log(myObj);
     url = "../php/modify_data.php" + "?idx=" + myObj['idx'] + "&sub=" + myObj['subject'] + "&day=" + myObj['day'] + "&time=" + myObj['time'] + "&notes=" + myObj['notes'];
-    console.log(url)
     httpRequest.open('GET', url);
     httpRequest.send();
 
     location.reload();
+});
+var add_exam = document.getElementById("add_exam");
+var exm_flg = false
+add_exam.addEventListener("click", function () {
+    var exam_form = document.getElementById("myModal");
+    exm_flg = true;
+    exam_form.style.display = "block";
+});
+
+var cncl_exam = document.getElementById("exam_cancel");
+var exm_flg = false
+cncl_exam.addEventListener("click", function () {
+    var exam_form = document.getElementById("myModal");
+    exm_flg = false;
+    exam_form.style.display = "none";
+});
+
+function update_exam_list() {
+    var exam_list = document.getElementById("exam_list");
+    var child = exam_list.lastElementChild;
+    while (child) {
+        exam_list.removeChild(child);
+        child = exam_list.lastElementChild;
+    }
+    var httpRequest = new XMLHttpRequest;
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState === 4) {
+            if (httpRequest.status === 200) {
+                rsp = httpRequest.responseText;
+                objs = JSON.parse(rsp);
+                if (objs == "") {
+                    var empty_p = document.createElement('p');
+                    empty_p.setAttribute('id', "empty_p");
+                    empty_p.innerHTML = "You have no upcoming exams";
+                    exam_list.appendChild(empty_p);
+                } else {
+                    for (var obj in objs) {
+                        var new_div = document.createElement('div');
+                        new_div.setAttribute('id', "exam_det");
+                        for (var i in objs[obj]) {
+                            var newElement = document.createElement('p');
+                            newElement.innerHTML = objs[obj][i];
+                            new_div.appendChild(newElement);
+                        }
+                        exam_list.appendChild(new_div);
+                    }
+                }
+            }
+        }
+    };
+    httpRequest.open('GET', "../php/exam_details.php?usr=" + usr);
+    httpRequest.send();
+
+
+    if (exam_list.clientHeight < exam_list.scrollHeight) {
+        exam_list.style.borderRight = "0px";
+    } else {
+        exam_list.style.borderRight = "3px solid #007F80";
+    }
+    var exam_form = document.getElementById("myModal");
+    exm_flg = false;
+    exam_form.style.display = "none";
+}
+
+var exam_list = document.getElementById("exam_list");
+var exam_sub = document.getElementById("exam_sub");
+exam_sub.addEventListener("click", function () {
+    var name = document.getElementById("exam_name").value;
+    var date = document.getElementById("exam_date").value;
+    var time = document.getElementById("time_list").value;
+
+    time_dict = { "8 am": 4, "10 am": 5, "12 pm": 6, "2 pm": 7, "4 pm": 8, "6 pm": 9 }
+    if (date === "Day 1") {
+        idx = time_dict[time] + 0;
+    } else if (date === "Day 2") {
+        idx = time_dict[time] + 12;
+    } else if (date === "Day 3") {
+        idx = time_dict[time] + 24;
+    } else if (date === "Day 4") {
+        idx = time_dict[time] + 36;
+    } else if (date === "Day 5") {
+        idx = time_dict[time] + 48;
+    } else if (date === "Day 6") {
+        idx = time_dict[time] + 60;
+    } else if (date === "Day 7") {
+        idx = time_dict[time] + 72;
+    } else if (date === "Day 8") {
+        idx = time_dict[time] + 84;
+    } else if (date === "Day 9") {
+        idx = time_dict[time] + 96;
+    } else if (date === "Day 10") {
+        idx = time_dict[time] + 108;
+    }
+    idx = ("000" + idx).slice(-3);
+    var httpRequest = new XMLHttpRequest;
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState === 4) {
+            if (httpRequest.status === 200) {
+            }
+        }
+    };
+    url = "../php/add_exam.php" + "?idx=" + idx + "&name=" + name + "&date=" + date + "&time=" + time + "&usr=" + usr;
+    httpRequest.open('GET', url);
+    httpRequest.send();
+
+    update_exam_list();
 });

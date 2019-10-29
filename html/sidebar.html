@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/todo.css">
     <link rel="stylesheet" href="../css/details.css">
 </head>
 
@@ -13,7 +14,8 @@
     <div class="sidebar" scroll="no">
         <ul>
             <li><a onclick="showHome()">Home</a></li>
-            <li><a onclick="showInfo()">Details</a></li>
+            <li><a onclick="showToDo()">To-Do</a></li>
+            <li><a onclick="showDetails()">Exam<br>Details</a></li>
             <li><a onclick="logout()">Logout</a></li>
         </ul>
     </div>
@@ -222,10 +224,66 @@
             </div>
         </div>
     </div>
-    <div id="info" style="display: none;margin-left: 10rem;">
+    <div id="todo" style="display: none;margin-left: 10rem;">
+    </div>
+    <div id="details">
+        <h1>Overview of exams</h1>  
+        <div class="exam_list" id="exam_list">
+            
+        </div>
+        <div id="myModal" class="modal" style="display: none;">
+            <div id="exam_form">
+                <div class="exam_item">
+                    <p>Exam Name:</p>
+                </div>
+                <div class="exam_item">
+                    <input type="text" id="exam_name" name="exm_nm">
+                </div>
+                <div class="exam_item">
+                    <p>Exam Date:</p>
+                </div>
+                <div class="exam_item">
+                    <select name="" id="exam_date">
+                        <option value="Day 1">Day 1</option>
+                        <option value="Day 2">Day 2</option>
+                        <option value="Day 3">Day 3</option>
+                        <option value="Day 4">Day 4</option>
+                        <option value="Day 5">Day 5</option>
+                        <option value="Day 6">Day 6</option>
+                        <option value="Day 7">Day 7</option>
+                        <option value="Day 8">Day 8</option>
+                        <option value="Day 9">Day 9</option>
+                        <option value="Day 10">Day 10</option>
+                    </select>
+                </div>
+                <div class="exam_item">
+                    <p>Time:</p>
+                </div>
+                <div class="exam_item">
+                    <select id="time_list">
+                        <option value="8 am">8 AM</option>
+                        <option value="10 am">10 AM</option>
+                        <option value="12 pm">12 PM</option>
+                        <option value="2 pm">2 PM</option>
+                        <option value="4 pm">4 PM</option>
+                        <option value="6 pm">6 PM</option>
+                    </select>
+                </div>
+                <div class="exam_item">
+                    <button id="exam_sub">Submit</button>
+                </div>
+                <div class="exam_item">
+                    <button id="exam_cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="button_div">
+            <button id="add_exam">&plus;</button>
+        </div>
     </div>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="../js/home.js"></script>
+
 </html>
