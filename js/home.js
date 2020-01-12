@@ -4,7 +4,12 @@ httpRequest.onreadystatechange = function () {
     if (httpRequest.readyState === 4) { // Request is done
         if (httpRequest.status === 200) { // successfully
             usr = httpRequest.responseText;
-            init_table();
+            if (usr === "") {
+                window.location.replace("../php/logout.php");
+                console.log("null")
+            } else {
+                init_table();
+            }
         }
     }
 };
@@ -145,7 +150,7 @@ function bindClick(i) {
                 document.getElementById("time_p").innerHTML = times[(index - 131)];
                 idx = index - 23;
             }
-        } else if (block[i].style.backgroundColor == hexString2.style.backgroundColor){
+        } else if (block[i].style.backgroundColor == hexString2.style.backgroundColor) {
             var entry = document.getElementById("modify_entry");
             entry.style.display = "grid";
 
@@ -254,7 +259,7 @@ function init_table() {
                 for (var i in obj[1]) {
                     block[parseInt(obj[1][i])].style.backgroundColor = 'red';
                     block[parseInt(obj[1][i])].removeEventListener("click", bindClick(parseInt(obj[1][i])));
-                    block[parseInt(obj[1][i])].addEventListener("click", function(){
+                    block[parseInt(obj[1][i])].addEventListener("click", function () {
                         alert("This is an Exam!!");
                     });
                 }
